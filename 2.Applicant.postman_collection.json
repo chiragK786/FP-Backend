@@ -1,0 +1,776 @@
+{
+	"info": {
+		"_postman_id": "35860967-0f72-45c1-a8fa-f226a65ea457",
+		"name": "2.Applicant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26967474",
+		"_collection_link": "https://interstellar-robot-975120.postman.co/workspace/DDT-API~ea03afb9-9c51-416f-9dd2-c08d09faf8a0/collection/26967474-35860967-0f72-45c1-a8fa-f226a65ea457?action=share&creator=26967474&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Applicant",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json()",
+									"var appID = json.data.id",
+									"// pm.variables",
+									"pm.collectionVariables.set(\"appID\", appID);",
+									"console.log(appID)",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var appemail = pm.iterationData.get(\"AppEmail\")",
+									"",
+									"pm.globals.set(\"AppEmail\", appemail);",
+									"",
+									"var pwd = pm.iterationData.get(\"pwd\")",
+									"pm.collectionVariables.set(\"pwd\",pwd)",
+									"var fnameapp = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.collectionVariables.set(\"fnameapp\",fnameapp)",
+									"console.log(fnameapp)",
+									"var lnameapp = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.collectionVariables.set(\"lnameapp\",lnameapp)",
+									"console.log(lnameapp)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenadmin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"{{AppEmail}}\",\n    \"firstName\":\"{{fnameapp}}\",\n    \"lastName\":\"{{lnameapp}}\",\n    \"password\":\"{{pwd}}\",\n    \"confirmPassword\":\"{{pwd}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/v1/auth/applicant/register",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register recruiter ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var appemail = pm.iterationData.get(\"AppEmail\")",
+									"",
+									"pm.globals.set(\"AppEmail\", appemail);",
+									"",
+									"var pwd = pm.iterationData.get(\"pwd\")",
+									"pm.collectionVariables.set(\"pwd\",pwd)",
+									"var fnameapp = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.collectionVariables.set(\"fnameapp\",fnameapp)",
+									"console.log(fnameapp)",
+									"var lnameapp = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.collectionVariables.set(\"lnameapp\",lnameapp)",
+									"console.log(lnameapp)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json()",
+									"var appID = json.data.id",
+									"// pm.variables",
+									"pm.collectionVariables.set(\"appID\", appID);",
+									"console.log(appID)",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenadmin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"{{recEmail}}\",\n    \"firstName\":\"{{fnamerec}}\",\n    \"lastName\":\"{{lnamerec}}\",\n    \"password\":\"{{pwdrec}}\",\n    \"confirmPassword\":\"{{pwdrec}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/v1/auth/applicant/register",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();",
+									"var AppToken = json.data.token",
+									"",
+									"pm.collectionVariables.set(\"AppToken\", AppToken);",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MywicGFzc3dvcmRDaGFuZ2VkQXQiOiIyMDIzLTA2LTA2VDA0OjU2OjQ0LjAwMFoiLCJpYXQiOjE2ODYwMzE3MTgsImV4cCI6MTY4NjI5MDkxOH0.VRI2Aq9EVaHeewxrj3noTS0B-8m2oytSCbj1AbIEA5o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"password\": \"{{pwd}}\",\n        \"email\": \"{{AppEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/applicant/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login recruiter ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json();",
+									"var AppToken = json.data.token",
+									"",
+									"pm.collectionVariables.set(\"AppToken\", AppToken);",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MywicGFzc3dvcmRDaGFuZ2VkQXQiOiIyMDIzLTA2LTA2VDA0OjU2OjQ0LjAwMFoiLCJpYXQiOjE2ODYwMzE3MTgsImV4cCI6MTY4NjI5MDkxOH0.VRI2Aq9EVaHeewxrj3noTS0B-8m2oytSCbj1AbIEA5o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"password\": \"{{pwdrec}}\",\n        \"email\": \"{{recEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/applicant/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View jobs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json()",
+									"var appdata = json.data.data[0]",
+									"var JobID =  appdata.id",
+									"",
+									"pm.globals.set(\"JobID\",JobID)",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AppToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jobs/applicant",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"applicant"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "QA",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply jobs",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = pm.response.json()",
+									"var appId = json.data.id",
+									"pm.globals.set(\"appId\", appId);",
+									"",
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AppToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jobId\":\"{{JobID}}\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/v1/applications/applicant",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								"applicant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Applied jobs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AppToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/applications/applicant?sort=jobId:desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applications",
+								"applicant"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "jobId:desc"
+								},
+								{
+									"key": "perPage",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret\":\"2ui0aeglrdi\",\n    \"newPassword\":\"password@123\",\n    \"confirmPassword\":\"password@123\",\n    \"email\":\"recruiter@sqb.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/applicant/reset-password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"verify success is true\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"true\");",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Status code is 422\", function () {",
+									"    pm.response.to.have.status(422);",
+									"});",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Response time is less than 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"sonndddddddnasdslddi@sb.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/api/v1/auth/applicant/forgot-password",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"applicant",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://sonali-fp-api.squareboat.info"
+		},
+		{
+			"key": "jobId",
+			"value": ""
+		},
+		{
+			"key": "AppEmail",
+			"value": ""
+		},
+		{
+			"key": "pwd",
+			"value": ""
+		},
+		{
+			"key": "fnameapp",
+			"value": ""
+		},
+		{
+			"key": "lnameapp",
+			"value": ""
+		},
+		{
+			"key": "appID",
+			"value": ""
+		},
+		{
+			"key": "AppToken",
+			"value": ""
+		},
+		{
+			"key": "jobID",
+			"value": ""
+		},
+		{
+			"key": "recID",
+			"value": ""
+		},
+		{
+			"key": "recEmail",
+			"value": ""
+		},
+		{
+			"key": "pwdrec",
+			"value": ""
+		},
+		{
+			"key": "fnamerec",
+			"value": ""
+		},
+		{
+			"key": "lnamerec",
+			"value": ""
+		},
+		{
+			"key": "recToken",
+			"value": ""
+		},
+		{
+			"key": "recjobID",
+			"value": ""
+		},
+		{
+			"key": "userID",
+			"value": ""
+		}
+	]
+}

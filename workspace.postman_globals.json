@@ -1,0 +1,74 @@
+{
+	"id": "d47e5d60-acd5-47c7-82bb-38eb9373f544",
+	"values": [
+		{
+			"key": "baseurl",
+			"value": "https://sonali-fp-api.squareboat.info/",
+			"enabled": true
+		},
+		{
+			"key": "recEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "pwdrec",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "recjobID",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "recToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "AppEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "JobID",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "adminEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "adminpwd",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "tokenadmin",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "userID",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-06-15T14:42:02.036Z",
+	"_postman_exported_using": "Postman/10.15.1"
+}
